@@ -11,8 +11,7 @@ for(const cat of tabs){const items=state.exercises.filter(e=>e.category===cat);i
 // Never modify stored records here. Correct only clearly implausible old minute
 // values (>= 120) when the same exercise also has second-based records.
 function comparableValue(value,unit,legacySeconds=false){const n=Number(value);return unit==='Min.'&&!legacySeconds?n*60:n}
-function legacySecondsRows(records){const mixed=new Set(records.filter(r=>r.unit==='Sek.').map(r=>r.category+'|'+(r.exercise||r.exerciseName)));
- return records.map(r=>({...r,_legacySeconds:r.unit==='Min.'&&Number(r.value)>=120&&mixed.has(r.category+'|'+(r.exercise||r.exerciseName))}));}
+function legacySecondsRows(records){return records;}
 function statSeconds(r){return comparableValue(r.value,r.unit,r._legacySeconds)}
 function sameMeasure(a,b){return a==='Wdh.'?b==='Wdh.':(a==='Sek.'||a==='Min.')&&(b==='Sek.'||b==='Min.')}
 function personalRecord(e,log){
